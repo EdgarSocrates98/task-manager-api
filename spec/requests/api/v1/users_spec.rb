@@ -18,7 +18,6 @@ RSpec.describe 'Users API', type: :request do
     end
 
     context 'when the user exist' do
-
       it 'returns the user' do
         expect(json_body[:id]).to eq(user_id)
       end
@@ -38,7 +37,6 @@ RSpec.describe 'Users API', type: :request do
   end
 
   describe 'POST /users' do
-
     before do
       post '/users', params: { user: user_params }.to_json, headers: headers
     end
@@ -69,13 +67,11 @@ RSpec.describe 'Users API', type: :request do
   end
 
   describe 'PUT /users/:id' do
-
     before do
       put "/users/#{user_id}", params: { user: user_params }.to_json, headers: headers
     end
 
     context 'When the request params are valid' do
-
       let(:user_params) { { email: 'novo_new@email.com' } }
 
       it 'returns status code 200' do
@@ -88,7 +84,6 @@ RSpec.describe 'Users API', type: :request do
     end
 
     context 'When the request params are invalid' do
-
       let(:user_params) { { email: 'invalid_email@' } }
 
       it 'returns status code 422' do
@@ -102,7 +97,6 @@ RSpec.describe 'Users API', type: :request do
   end
 
   describe 'DELETE /users/:id' do
-
     before do
       delete "/users/#{user_id}", params: {}, headers: headers
     end
@@ -112,8 +106,7 @@ RSpec.describe 'Users API', type: :request do
     end
 
     it 'removes the user from database' do
-      expect( User.find_by(id: user.id) ).to be_nil
+      expect(User.find_by(id: user.id)).to be_nil
     end
   end
-
 end
